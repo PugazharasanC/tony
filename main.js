@@ -1,9 +1,10 @@
-// addition of variant text boxes
-var counter = 1;
-function AddVariant() {  
-var types = document.getElementById("Variant-container");
-//var type_id = types.getElementsByTagName("input").length;
-//type_id--;     
+        // addition of variant text boxes
+
+        var counter = 1;
+        function AddVariant() {  
+          var types = document.getElementById("Variant-container");
+         // var type_id = types.getElementsByTagName("input").length;
+         // type_id--;     
           var input = document.createElement('input');
           input.type = "text";
           input.setAttribute('id', 'Type'+ counter);
@@ -14,8 +15,8 @@ var types = document.getElementById("Variant-container");
           input.setAttribute('aria-describedby', 'basic-addon1');
           types.appendChild(input);
           
-          //var values = document.getElementById("Value-container");
-          //var value_id = values.getElementsByTagName("input").length;
+         // var values = document.getElementById("Value-container");
+         // var value_id = values.getElementsByTagName("input").length;
                     
           var input_1 = document.createElement('input');
           input_1.type = "text";
@@ -26,17 +27,16 @@ var types = document.getElementById("Variant-container");
           input_1.setAttribute('aria-label', 'Username');
           input_1.setAttribute('aria-describedby', 'basic-addon1');
           types.appendChild(input_1);
-          counter++;  
-
+        counter++;  
         }
          
         var h ;
-      
+        var check = 0;
         function GenerateVariant(){
           var typeElements = document.getElementById("Variant-container");
           var typeInputs = typeElements.getElementsByTagName("input");
-          //var valueElements = document.getElementById("Value-container");
-          //var valueInputs = valueElements.getElementsByTagName("input");
+        //  var valueElements = document.getElementById("Value-container");
+        //  var valueInputs = valueElements.getElementsByTagName("input");
           VaryingArray = [];
                   
           for(let j=0;j<Math.floor((typeInputs.length+1)/2);j++){     
@@ -53,8 +53,9 @@ var types = document.getElementById("Variant-container");
         }
         
          h = (combos(VaryingArray));
-         //console.log(h);
-         
+        // console.log(h);
+        
+         if (check === 0) {
         for(let z = 0; z < h.length;z++)
         {
           var addon = document.getElementById("addon-container");
@@ -72,6 +73,7 @@ var types = document.getElementById("Variant-container");
           
         }
         
+        
         var buttons = document.createElement('button')
         var addon = document.getElementById("addon-container");
         buttons.setAttribute('class','btn btn-primary');
@@ -82,6 +84,8 @@ var types = document.getElementById("Variant-container");
         addon.appendChild(buttons);
         //console.log('loop end');
         }
+         check = 1;
+        }
         
         function JsonFile(){
           var product = document.getElementById("product").value;
@@ -89,12 +93,13 @@ var types = document.getElementById("Variant-container");
           var basePrice = document.getElementById("basePrice").value; 
           var typeElements = document.getElementById("Variant-container");
           var typeInputs = typeElements.getElementsByTagName("input");
-          var valueElements = document.getElementById("Value-container");
-          var valueInputs = valueElements.getElementsByTagName("input");
+        //  var valueElements = document.getElementById("Value-container");
+        //  var valueInputs = valueElements.getElementsByTagName("input");
           var addon = document.getElementById("addon-container");
           var addonInputs = addon.getElementsByTagName("input");
+        
           var sellerArray = [];
-          //var finalArray = [];
+         // var finalArray = [];
           var temp = [];
         
           //Variants
@@ -108,11 +113,14 @@ var types = document.getElementById("Variant-container");
           temp.push(json_1)
         }
         //console.log(temp);
+        
         // Variant details 
+
         const u = h.flat(1);
-        console.log(u)
+        //console.log(u)
         var obj_1 = {};
         var la = [];
+ 
         for(let i = 0;i<u.length;i++){
           for (let j = 0;j<Math.floor((typeInputs.length+1)/2);j++){
             var obj_1 = {
@@ -125,29 +133,37 @@ var types = document.getElementById("Variant-container");
           i--;
         }
         //console.log(la);
+        
         var obj_2 = {};
         var ht = Math.floor((typeInputs.length+1)/2);
         var lb = ht;
         var at = [];
+
+        
         for(let i =0;i<la.length;i++){
          obj_2= (la.slice(i,ht))
          at.push(obj_2)
          i = ht - 1;
          ht = ht + lb;
          }
-
         //console.log(at);
+        
+        
         var obj_8 = {};
         for(let i = 0; i < h.length;i++){
           obj_8 = {addOnPrice : document.getElementById("Addon"+i).value};
           at[i].push(obj_8);
         }
+        
         //console.log(at);
+        
         var kt = [];
         for(let i =0 ; i < at.length ; i++){
           kt.push(at[i].reduce(((r, c) => Object.assign(r, c)), {}))
         }
         //console.log(kt)
+        
+        
         // final json
           sellerArray.push({
             Product : product,
@@ -156,8 +172,12 @@ var types = document.getElementById("Variant-container");
             Variants : temp,
             VariantDetails: kt
         });
+        
+        
         // json conversion
+        
+          
           var string = JSON.stringify(sellerArray);
           document.getElementById("Json").innerHTML = string;
-          console.log(string)
-        }
+
+      }
