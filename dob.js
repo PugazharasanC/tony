@@ -12,17 +12,17 @@ function Results() {
       var hour = minute * 60;
       var day = hour * 24;
       var month = day * 30;
-
-      var year = day * 365;
-
-      years = Math.round(milliseconds / year);
-      months = years * 12;
-      days = years * 365;
+      var year = New Date().getFullYear() - DOB.getFullYear();
+      var month = new Date().getMonth() - DOB.getMonth();
+      if(month < 0){
+        year -= 1;
+        month = 12 + month;
+      }
       hours = Math.round(milliseconds / hour);
       seconds = Math.round(milliseconds / second);
 
-      var message = "Age in Years : " + years +
-          "</br>Age in Months : " + months +
+      var message = "Age in Years : " + year +
+          "</br>Age in Months : " + month +
           "</br>Age in Days : " + days +
           "</br>Age in Hours : " + hours +
           "</br>Age in Seconds : " + seconds +
