@@ -21,7 +21,7 @@ function Results() {
       var month = new Date().getMonth() - DOB.getMonth();
       if(month < 0){
         year -= 1;
-        month = 12 + month;
+        month = 12*year + (12 + month);
       }
       else if(month == 0){
                 month = 12*year;
