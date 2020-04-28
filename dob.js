@@ -12,7 +12,7 @@ function Results() {
       var hour = minute * 60;
       var day = hour * 24;
       var month = day * 30;
-      var year = New Date().getFullYear() - DOB.getFullYear();
+      var year = new Date().getFullYear() - DOB.getFullYear();
       var month = new Date().getMonth() - DOB.getMonth();
       if(month < 0){
         year -= 1;
