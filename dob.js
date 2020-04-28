@@ -23,6 +23,12 @@ function Results() {
         year -= 1;
         month = 12 + month;
       }
+      else if(month == 0){
+                month = 12*year;
+            }
+            else{
+                month = 12*year+month;
+            }
       days = Math.floor(milliseconds/day);
       hours = Math.round(milliseconds / hour);
       seconds = Math.round(milliseconds / second);
